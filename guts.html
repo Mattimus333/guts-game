@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    <title>Guts!</title>
+</head>
+
+<body class="green">
+    <nav class="navigation green">
+        <div class="nav-wrapper">
+            <a class="black-text brand-logo center">♣️♥️  GUTS ONLINE  ♦️♠︎</a>
+            <!-- Modal Trigger -->
+            <button class="btn red left" href="#" data-target="modal1">Rules</button>
+            <button class="black btn right" id="start-btn">Start Game</button>
+        </div>
+    </nav>
+    <div class="row">
+        <br>
+        <div class="col s7 offset-s5" id="player3">
+            <img id="player3-im1" src="cardImage/Green.png" width="113" height="157" alt="card">
+            <img id="player3-im2" src="cardImage/Green.png" width="113" height="157" alt="card">
+            <p class="black-text" id="player3Chips"></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s3 offset-s1" id="player1">
+          <img id="player1-im1" src="cardImage/Green.png" width="113" height="157" alt="card">
+          <img id="player1-im2" src="cardImage/Green.png" width="113" height="157" alt="card">
+          <p class="black-text" id="player1Chips"></p>
+        </div>
+        <div class="col s3 offset-s1" id="pot">
+          <img id="pot-im1" src="cardImage/Green.png" width="113" height="157" alt="card">
+          <img id="pot-im2" src="cardImage/Green.png" width="113" height="157" alt="card">
+          <p class="black-text" id="potChips"></p>
+        </div>
+        <div class="col s3 offset-s1" id="player2">
+            <img id="player2-im1" src="cardImage/Green.png" width="113" height="157" alt="card">
+            <img id="player2-im2" src="cardImage/Green.png" width="113" height="157" alt="card">
+            <p class="black-text" id="player2Chips"></p>
+        </div>
+    </div>
+    <div id="modal1" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Rules of Guts</h4>
+            <ul>
+                <li>Each player shall ante the specified amount into the pot</li>
+                <br>
+                <li>Each player is dealt two cards</li>
+                <br>
+                <li>After all players have decided, the players that are in will reveal their cards</li>
+                <br>
+                <li>If no player is in, all players must ante again</li>
+                <br>
+                <li>If one player is in, that player must play the pot. If they lose they must match the pot</li>
+                <br>
+                <li>If multiple players are in, the winner takes the pot and the losing players must match the pot</li>
+                <br>
+                <li class="red-text">If, after a round, you don't have enough chips to match the pot, YOU LOSE!</li>
+                <br>
+                <li>DONT BE CHICKEN</li>
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close btn-flat">Agree</a>
+        </div>
+    </div>
+    <script type="text/javascript" src="screw_with_deck.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.modal').modal();
+        });
+    </script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+</body>
+
+</html>
