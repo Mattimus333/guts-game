@@ -120,6 +120,9 @@ class Game {
     }
 
     endGame() {
+      //remove ante button if it exists
+      
+
       //remove stay/fold buttons if they exist
         if (document.getElementsByClassName('stay-fold-btn').length > 0){
           let stayFoldArr = document.getElementsByClassName('stay-fold-btn');
@@ -134,7 +137,7 @@ class Game {
         Materialize.toast(`${game.playerArray[0].name} is the victor with ${game.playerArray[0].chips} chips!`, 90000, 'red');
         //toast the other players and their chip counts
         for (var i = 1; i < game.playerArray.length; i++) {
-            Materialize.toast(`${game.playerArray[i].name} finishes with ${game.playerArray[i].chips} chips!`, 90000);
+            Materialize.toast(`${game.playerArray[i].name} finishes with ${game.playerArray[i].chips} chips!`, 9000);
         }
         //if players were eliminated, display them
         if (game.playersOut.length > 0) {
