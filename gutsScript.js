@@ -46,7 +46,8 @@ class Deck {
 }
 
 class Game {
-    constructor() {
+    constructor(players) {
+        console.log(players);
         //remove start button and replace with quit button.
         document.getElementsByClassName('nav-wrapper')[0].removeChild(document.getElementById('start-btn'));
         document.getElementsByClassName('nav-wrapper')[0].insertAdjacentHTML('beforeend', '<button class="black btn right" id="quit-btn">Quit</button>');
@@ -55,12 +56,22 @@ class Game {
         })
         this.playerArray = []; //create Array to store players
         this.playersOut = []; //stores players that have been eliminated
-        this.player1 = new Player('player1', 500);
-        this.player2 = new Player('player2', 500);
-        this.player3 = new Player('player3', 500);
-        this.playerArray.push(this.player1);
-        this.playerArray.push(this.player2);
-        this.playerArray.push(this.player3);
+        if (players === 2) { //two player game
+            document.getElementById('player3Chips').textContent = "";
+            this.player1 = new Player('player1', 500);
+            this.player2 = new Player('player2', 500);
+            this.playerArray.push(this.player1);
+            this.playerArray.push(this.player2);
+
+        } else { //three player game
+            this.player1 = new Player('player1', 500);
+            this.player2 = new Player('player2', 500);
+            this.player3 = new Player('player3', 500);
+            this.playerArray.push(this.player1);
+            this.playerArray.push(this.player2);
+            this.playerArray.push(this.player3);
+        }
+
         this.pot = new Player('pot', 0); //create pot
         this.deck = new Deck(); //create deck
         this.enableListener = false;
@@ -117,17 +128,26 @@ class Game {
         }
     }
 
-    endGame() {  //when you press quit or only one player is left
-      //remove ante button if it exists
-      if (document.getElementById('ante-button') !== null) {
-        document.getElementById('ante-button').remove();
-      }
-      //remove stay/fold buttons if they exist
-        if (document.getElementsByClassName('stay-fold-btn').length > 0){
-          let stayFoldArr = document.getElementsByClassName('stay-fold-btn');
-          for (var i = stayFoldArr.length -1; i >= 0; i--) {
-            stayFoldArr[i].remove();
-          }
+    endGame() { //when you press quit or only one player is left
+
+        //remove reveal button if it exists
+        if (document.getElementById('reveal-button') !== null) {
+            document.getElementById('reveal-button').remove();
+        }
+        //remove the nextHand/deal button if it exists
+        if (document.getElementById('deal-button') !== null) {
+            document.getElementById('deal-button').remove();
+        }
+        //remove ante button if it exists
+        if (document.getElementById('ante-button') !== null) {
+            document.getElementById('ante-button').remove();
+        }
+        //remove stay/fold buttons if they exist
+        if (document.getElementsByClassName('stay-fold-btn').length > 0) {
+            let stayFoldArr = document.getElementsByClassName('stay-fold-btn');
+            for (var i = stayFoldArr.length - 1; i >= 0; i--) {
+                stayFoldArr[i].remove();
+            }
         }
         //toast the player with the most chips
         game.playerArray.sort(function(a, b) {
@@ -155,10 +175,8 @@ class Game {
         document.getElementsByClassName('nav-wrapper')[0].removeChild(document.getElementById('quit-btn'));
 
         //put in a new game button
-        document.getElementsByClassName('nav-wrapper')[0].insertAdjacentHTML('beforeend', '<button class="black btn right" id="start-btn">New Game</button>');
-        document.getElementById('start-btn').addEventListener('click', () => {
-            game = new Game();
-        });
+        document.getElementsByClassName('nav-wrapper')[0].insertAdjacentHTML('beforeend', '            <button class="black dropdown-button btn right" data-activates="newG" id="start-btn">New Game</button>');
+        $('.dropdown-button').dropdown();
         //
     }
 
@@ -197,11 +215,11 @@ class Game {
     ante() {
         //if a player is out and they still have chips left, put them back in!
         for (var i = 0; i < game.playersOut.length; i++) {
-          let player = game.playersOut.pop();
-          if (player.chips > 0) {
-            Materialize.toast(`${player.name} is back in!`)
-            game.playerArray.push(player);
-          }
+            let player = game.playersOut.pop();
+            if (player.chips > 0) {
+                Materialize.toast(`${player.name} is back in!`)
+                game.playerArray.push(player);
+            }
         }
         //set the cards to be invisible
         game.hideCards();
@@ -237,7 +255,7 @@ class Game {
         for (var i = 0; i < game.playerArray.length; i++) {
             document.getElementById(`${game.playerArray[i].name}`).insertAdjacentHTML('beforeend', `<button class="btn red ${game.playerArray[i].name} stay-fold-btn" id="${game.playerArray[i].name}-stay">Stay</button>`); //stay button
 
-            document.getElementById(`${game.playerArray[i].name}`).insertAdjacentHTML('beforeend', `<button class="btn red ${game.playerArray[i].name} stay-fold-btn" id="${game.playerArray[i].name}-fold">Fold</button>`); //fold button
+            document.getElementById(`${game.playerArray[i].name}`).insertAdjacentHTML('beforeend', `<button class="btn black ${game.playerArray[i].name} stay-fold-btn" id="${game.playerArray[i].name}-fold">Fold</button>`); //fold button
 
             document.getElementById(`${game.playerArray[i].name}-stay`).addEventListener('click', (evt) => {
                 //set the correct player property
@@ -446,6 +464,9 @@ class Game {
     }
 }
 let game;
-document.getElementById('start-btn').addEventListener('click', () => {
-    game = new Game()
+document.getElementById('two-player').addEventListener('click', () => {
+    game = new Game(2);
+});
+document.getElementById('three-player').addEventListener('click', () => {
+    game = new Game(3);
 });

@@ -13,8 +13,8 @@
         <div class="nav-wrapper">
             <a class="black-text brand-logo center">♣️♥️  GUTS ONLINE  ♦️♠︎</a>
             <!-- Modal Trigger -->
-            <button class="btn red left" href="#" data-target="modal1">Rules</button>
-            <button class="black btn right" id="start-btn">New Game</button>
+            <button class="btn red left"  data-target="modal1">Rules</button>
+            <button class="black dropdown-button btn right" data-activates="newG" id="start-btn">New Game</button>
         </div>
     </nav>
     <div class="row">
@@ -27,14 +27,14 @@
     </div>
     <div class="row">
         <div class="col s3 offset-s1" id="player1">
-          <img id="player1-im1" src="cardImage/Green.png" width="113" height="157" alt="card">
-          <img id="player1-im2" src="cardImage/Green.png" width="113" height="157" alt="card">
-          <p class="black-text" id="player1Chips"></p>
+            <img id="player1-im1" src="cardImage/Green.png" width="113" height="157" alt="card">
+            <img id="player1-im2" src="cardImage/Green.png" width="113" height="157" alt="card">
+            <p class="black-text" id="player1Chips"></p>
         </div>
         <div class="col s3 offset-s1" id="player3">
-          <img id="player3-im1" src="cardImage/Green.png" width="113" height="157" alt="card">
-          <img id="player3-im2" src="cardImage/Green.png" width="113" height="157" alt="card">
-          <p class="black-text" id="player3Chips"></p>
+            <img id="player3-im1" src="cardImage/Green.png" width="113" height="157" alt="card">
+            <img id="player3-im2" src="cardImage/Green.png" width="113" height="157" alt="card">
+            <p class="black-text" id="player3Chips"></p>
         </div>
         <div class="col s3 offset-s1" id="player2">
             <img id="player2-im1" src="cardImage/Green.png" width="113" height="157" alt="card">
@@ -42,15 +42,25 @@
             <p class="black-text" id="player2Chips"></p>
         </div>
     </div>
+    <ul id="newG" class="dropdown-content black">
+      <button class="btn black" id="two-player">2 Player</button>
+      <button class="btn black" id="three-player">3 Player</button>
+    </ul>
     <div id="modal1" class="modal modal-fixed-footer">
         <div class="modal-content">
             <h4>Rules of Guts</h4>
             <ul>
-                <li>Each player shall ante the specified amount into the pot</li>
+                <li>The purpose of the game is to win as many chips as possible</li>
                 <br>
-                <li>Each player is dealt two cards</li>
+                <li>All players begin by anteing ten chips into the pot</li>
                 <br>
-                <li>After all players have decided to stay or fold, the players that are in will reveal their cards</li>
+                <li>All players and the pot recieve two cards each</li>
+                <br>
+                <li>Each player then looks at their cards and chooses to stay in the round or to fold</li>
+                <br>
+                <li>The hands are ranked high to low like so: pairs, suits of pairs, highcard, secondcard, suite of highcard</li>
+                <br>
+                <li>Players that stay reveal their cards and the higest two card poker hand wins</li>
                 <br>
                 <li>If no player is in, all players must ante again</li>
                 <br>
@@ -58,7 +68,9 @@
                 <br>
                 <li>If multiple players are in, the winner takes the pot and the losing players must match the pot</li>
                 <br>
-                <li class="red-text">If, after a round, you don't have enough chips to match the pot, YOU LOSE!</li>
+                <li>If, after a round, you run out of chips, YOU LOSE!</li>
+                <br>
+                <li>If the pot is beaten, you can choose to start a new round</li>
                 <br>
                 <li>DONT BE CHICKEN</li>
             </ul>
@@ -67,7 +79,7 @@
             <a href="#!" class="modal-action modal-close btn-flat">Agree</a>
         </div>
     </div>
-    <script type="text/javascript" src="screw_with_deck.js"></script>
+    <script type="text/javascript" src="gutsScript.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('.modal').modal();
