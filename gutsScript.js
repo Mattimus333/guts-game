@@ -37,12 +37,10 @@ class Deck {
             })
             .then((res) => {
                 this.id = res.deck_id;
-                this.count = 52;
             });
     }
     //Sets the count to 52 and reshuffles all the drawn cards back into the deck.
     shuffle() {
-        this.count = 52;
         fetch(`https://deckofcardsapi.com/api/deck/${this.id}/shuffle/`);
     }
 }
@@ -119,10 +117,11 @@ class Game {
         }
     }
 
-    endGame() {
+    endGame() {  //when you press quit or only one player is left
       //remove ante button if it exists
-      
-
+      if (document.getElementById('ante-button') !== null) {
+        document.getElementById('ante-button').remove();
+      }
       //remove stay/fold buttons if they exist
         if (document.getElementsByClassName('stay-fold-btn').length > 0){
           let stayFoldArr = document.getElementsByClassName('stay-fold-btn');
@@ -134,7 +133,7 @@ class Game {
         game.playerArray.sort(function(a, b) {
             return b.chips - a.chips;
         })
-        Materialize.toast(`${game.playerArray[0].name} is the victor with ${game.playerArray[0].chips} chips!`, 90000, 'red');
+        Materialize.toast(`${game.playerArray[0].name} is the victor with ${game.playerArray[0].chips} chips!`, 9000, 'red');
         //toast the other players and their chip counts
         for (var i = 1; i < game.playerArray.length; i++) {
             Materialize.toast(`${game.playerArray[i].name} finishes with ${game.playerArray[i].chips} chips!`, 9000);
