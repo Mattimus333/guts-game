@@ -1,0 +1,23 @@
+{
+  "name": "guts_Game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gutsScript.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mattimus333/guts-game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mattimus333/guts-game/issues"
+  },
+  "homepage": "https://github.com/Mattimus333/guts-game#readme",
+  "dependencies": {
+    "express": "^4.14.1"
+  }
+}
