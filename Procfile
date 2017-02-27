@@ -1,1 +1,1 @@
-web : node gutsScript.js
+web : node server.js
